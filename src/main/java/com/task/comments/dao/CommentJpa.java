@@ -10,26 +10,28 @@ public class CommentJpa implements CommentDao{
 
     @Override
     public List<Comment> getAllComments() {
-        return null;
+        return commentRepository.findAll();
     }
 
     @Override
     public Optional<Comment> getComment(Long id) {
-        return Optional.empty();
+
+        return commentRepository.findById(id);
     }
 
     @Override
     public void createComment(Comment comment) {
-
+        commentRepository.save(comment);
     }
 
     @Override
     public void updateComment(Comment comment, Long id) {
-
+        commentRepository.save(comment);
     }
 
     @Override
     public void deleteComment(Long id) {
+        commentRepository.deleteById(id);
 
     }
 }
