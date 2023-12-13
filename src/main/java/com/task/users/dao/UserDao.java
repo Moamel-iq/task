@@ -16,5 +16,8 @@ public interface UserDao {
 
     void deleteUser(Long id);
 
+    boolean existsUserWithEmail(String email);
+    boolean existsUserWithPhone(String phone);
+
 
 }

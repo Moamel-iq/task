@@ -42,4 +42,14 @@ public class UserJpa implements UserDao{
         userRepository.deleteById(id);
 
     }
+
+    @Override
+    public boolean existsUserWithEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existsUserWithPhone(String phone) {
+        return userRepository.existsByPhone(phone);
+    }
 }
