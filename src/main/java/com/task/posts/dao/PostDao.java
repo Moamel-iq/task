@@ -7,10 +7,12 @@ import java.util.Optional;
 
 public interface PostDao {
     List<Post> getAllPosts();
-    Optional<Post> getPost(Long id);
+    Optional<Post> getPostById(Long id);
     void createPost(Post post);
     void updatePost(Post post , Long id);
     void deletePost(Long id);
+
+    List<Post> getPostByUserID(Long id);
 
 
 }

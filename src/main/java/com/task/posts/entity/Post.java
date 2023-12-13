@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "posts")
 @Data
-public class post {
+public class Post {
     @Id
     @SequenceGenerator(
             name = "posts_sequence",
@@ -51,7 +51,10 @@ public class post {
 
     public Post() {
     }
-
+    public Post(String title,String content){
+        this.title= title;
+        this.content=content;
+    }
     public Post(String title, String content, List<String> images, User user) {
         this.title = title;
         this.content = content;

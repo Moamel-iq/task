@@ -16,18 +16,22 @@ public class PostJpa implements PostDao{
         return postRepository.getAll();
     }
 
+
+
     @Override
-    public Optional<Post> getPost(Long id) {
+    public Optional<Post> getPostById(Long id) {
         return postRepository.findById(id);
     }
 
     @Override
     public void createPost(Post post) {
+
         postRepository.save(post);
     }
 
     @Override
     public void updatePost(Post post, Long id) {
+
         postRepository.save(post);
     }
 
@@ -35,5 +39,10 @@ public class PostJpa implements PostDao{
     public void deletePost(Long id) {
         postRepository.deleteById(id);
 
+    }
+
+    @Override
+    public List<Post> getPostByUserID(Long id) {
+        return postRepository.getPostByUserId(id);
     }
 }
