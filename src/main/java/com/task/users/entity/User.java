@@ -54,15 +54,13 @@ public class User {
     }
 
     public User(
-            Long id, String name, String image,
-            String email, String phone,
-            Instant createdAt, Instant updatedAt) {
-        this.id = id;
+             String name, String image,
+            String email, String phone            ) {
+
         this.name = name;
         this.image = image;
         this.email = email;
         this.phone = phone;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+
     }
 }
