@@ -1,10 +1,12 @@
 package com.task.comments.dao;
 
 import com.task.comments.entity.Comment;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 //Ridha
+@Repository("CommentJpa")
 public class CommentJpa implements CommentDao{
     private CommentRepository commentRepository;
 
