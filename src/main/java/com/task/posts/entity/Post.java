@@ -2,6 +2,7 @@ package com.task.posts.entity;
 
 
 import com.task.comments.entity.Comment;
+import com.task.likes.entity.Like;
 import com.task.users.entity.User;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -41,6 +42,8 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
 
+    @OneToMany(mappedBy = "post")
+    private List<Like> likes;
     @PrePersist
     public void setCreatedAt(){
         this.createdAt=Instant.now();
@@ -49,7 +52,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(String title, String content, List<String> images, Instant createdAt, User user) {
+    public Post(String title, String content, List<String> images, User user) {
         this.title = title;
         this.content = content;
 
