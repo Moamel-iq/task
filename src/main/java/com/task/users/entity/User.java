@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.time.Instant;
 
+//Moamel
 @Entity
 @Table(name = "users")
 @Data
@@ -54,13 +55,13 @@ public class User {
     }
 
     public User(
-             String name, String image,
-            String email, String phone            ) {
+            String name, String image,
+            String email, String phone,
+            Instant createdAt, Instant updatedAt) {
 
         this.name = name;
         this.image = image;
         this.email = email;
         this.phone = phone;
-
     }
 }
