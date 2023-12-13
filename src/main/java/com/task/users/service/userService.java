@@ -22,12 +22,12 @@ public class userService {
         this.userMapper = userMapper;
     }
 
-    public List<UserDto> getAllUsers(){
-        return userDao.getAllUser()
-                .stream()
-                .map(userMapper::toDto)
-                .collect(Collectors.toList());
-    }
+//    public List<UserDto> getAllUsers(){
+//        return userDao.getAllUser()
+//                .stream()
+//                .map(userMapper::toDto)
+//                .collect(Collectors.toList());
+//    }
 
     public void addUser(UserRegistrationRequest request){
        String email = request.email();
