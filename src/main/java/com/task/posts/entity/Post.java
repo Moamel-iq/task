@@ -1,9 +1,12 @@
 package com.task.posts.entity;
 
 
+import com.task.comments.entity.Comment;
+import com.task.likes.entity.Like;
 import com.task.users.entity.User;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 import java.util.List;
@@ -12,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "posts")
 @Data
-public class Post {
+public class post {
     @Id
     @SequenceGenerator(
             name = "posts_sequence",
@@ -28,6 +31,7 @@ public class Post {
     @Column(name = "content ",nullable = false)
     private String content;
     @Column(updatable = false)
+    @CreationTimestamp
     private Instant createdAt;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -35,6 +39,11 @@ public class Post {
     @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
     private List<Image> images;
 
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "post")
+    private List<Like> likes;
     @PrePersist
     public void setCreatedAt(){
         this.createdAt=Instant.now();
@@ -43,7 +52,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(String title, String content, List<String> images, Instant createdAt, User user) {
+    public Post(String title, String content, List<String> images, User user) {
         this.title = title;
         this.content = content;
 
