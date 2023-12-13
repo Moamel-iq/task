@@ -8,7 +8,7 @@ import java.util.Optional;
 ////Moamel
 public interface UserDao {
 
-    List<User> getAllUser();
+    List<User> getAllUsers();
     Optional<User> getUser(Long id);
 
     void createUser(User user);

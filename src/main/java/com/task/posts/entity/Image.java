@@ -8,20 +8,21 @@ import jakarta.persistence.*;
 public class Image {
     @Id
     @GeneratedValue(
-            strategy = GenerationType.AUTO,
+            strategy = GenerationType.SEQUENCE,
             generator = "image_sequence")
+
     private Long id;
 
 
     private String ImageUrl;
     @ManyToOne
     @JoinColumn(name = "post_id")
-    private post post;
+    private Post post;
 
     public Image() {
     }
 
-    public Image(String imageUrl, com.task.posts.entity.post post) {
+    public Image(String imageUrl, Post post) {
         ImageUrl = imageUrl;
         this.post = post;
     }
@@ -34,11 +35,11 @@ public class Image {
         ImageUrl = imageUrl;
     }
 
-    public com.task.posts.entity.post getPost() {
+    public Post getPost() {
         return post;
     }
 
-    public void setPost(com.task.posts.entity.post post) {
+    public void setPost(Post post) {
         this.post = post;
     }
 }

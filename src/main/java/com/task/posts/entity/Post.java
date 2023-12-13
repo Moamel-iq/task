@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "posts")
 @Data
-public class post {
+public class Post {
     @Id
     @SequenceGenerator(
             name = "posts_sequence",
@@ -30,6 +30,7 @@ public class post {
     @Column(updatable = false)
     private Instant createdAt;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
     private List<Image> images;
@@ -39,10 +40,10 @@ public class post {
         this.createdAt=Instant.now();
     }
 
-    public post() {
+    public Post() {
     }
 
-    public post(String title, String content, List<String> images, Instant createdAt, User user) {
+    public Post(String title, String content, List<String> images, Instant createdAt, User user) {
         this.title = title;
         this.content = content;
 

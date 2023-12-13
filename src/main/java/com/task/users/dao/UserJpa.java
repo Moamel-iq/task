@@ -16,7 +16,7 @@ public class UserJpa implements UserDao{
     }
 
     @Override
-    public List<User> getAllUser() {
+    public List<User> getAllUsers() {
 
         return userRepository.findAll();
     }
