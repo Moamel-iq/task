@@ -4,7 +4,10 @@ import com.task.users.dao.UserDao;
 import com.task.users.dto.UserDto;
 import com.task.users.dto.UserMapper;
 import com.task.users.entity.User;
+import com.task.users.exception.ResourceNotFound;
+import com.task.users.request.RequestValidationException;
 import com.task.users.request.UserRegistrationRequest;
+import com.task.users.request.UserUpdateRequest;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +15,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 ////Moamel
 @Service
-public class userService {
+public class UserService {
     private final UserDao userDao;
     private final UserMapper userMapper;
 
 
-    public userService(@Qualifier("userJpa") UserDao userDao, UserMapper userMapper) {
+    public UserService(@Qualifier("userJpa") UserDao userDao, UserMapper userMapper) {
         this.userDao = userDao;
         this.userMapper = userMapper;
     }
@@ -45,7 +48,30 @@ public class userService {
         userDao.createUser(user);
     }
 
+    public void updateUser(UserUpdateRequest request,Long id){
+        User user =userDao.getUser(id).orElseThrow(
+                ()->new ResourceNotFound(
+                        "user with id " + id + "not found "
+                ));
+        boolean changes = false;
+        if (request.name() != null && !request.name().equals(user.getName())) {
+            user.setName(request.name());
+            changes = true;
 
 
+        }
+        if (request.email() != null && !request.email().equals(user.getEmail()) &&
+                !userDao.existsUserWithEmail(request.email())) {
+            user.setEmail(request.email());
+            changes = true;
+        }
 
-}
+        if (!changes) {
+            throw new RequestValidationException("no changes were made");
+
+        }
+        userDao.updateUser(user, id);
+    }
+    }
+
+

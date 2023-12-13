@@ -17,11 +17,13 @@ public class UserJpa implements UserDao{
 
     @Override
     public List<User> getAllUser() {
+
         return userRepository.findAll();
     }
 
     @Override
     public Optional<User> getUser(Long id) {
+
         return userRepository.findById(id);
     }
 
@@ -32,7 +34,7 @@ public class UserJpa implements UserDao{
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(User user,Long id) {
         userRepository.save(user);
 
     }
