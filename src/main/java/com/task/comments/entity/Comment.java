@@ -22,7 +22,7 @@ public class Comment {
             sequenceName = "comments_sequence",
             allocationSize = 1)
     @GeneratedValue(
-            strategy = GenerationType.AUTO,
+            strategy = GenerationType.SEQUENCE,
             generator = "comments_sequence")
     private Long id;
 
@@ -30,11 +30,9 @@ public class Comment {
     private String content;
 
     @Column(name = "created_at")
-    @CreationTimestamp
     private Instant createdAt;
 
     @Column(name = "updated_at")
-    @UpdateTimestamp
     private Instant updatedAt;
     @ManyToOne
     @JoinColumn(name = "post_id")
@@ -45,12 +43,13 @@ public class Comment {
     private User user;
 
     @PrePersist
-    public void setCreatedAt(){
-        this.createdAt=Instant.now();
+    public void setCreatedAt() {
+        this.createdAt = Instant.now();
     }
+
     @PreUpdate
-    public void setUpdatedAt(){
-        this.updatedAt=Instant.now();
+    public void setUpdatedAt() {
+        this.updatedAt = Instant.now();
     }
 
     public Comment() {

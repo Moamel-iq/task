@@ -11,13 +11,15 @@ public interface CommentDao {
 
     List<Comment> getAllComments();
 
-    Optional<Comment>getComment(Long id);
+    Optional<Comment> getCommentById(Long id);
 
     void createComment(Comment comment);
 
     void updateComment(Comment comment, Long id);
 
     void deleteComment(Long id);
+
+    List<Comment> getCommentByPostId(Long id);
 
 
 

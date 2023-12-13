@@ -2,16 +2,22 @@ package com.task.comments.dto;
 
 
 import com.task.comments.entity.Comment;
+import org.springframework.stereotype.Service;
+
+import java.util.function.Function;
 
 //Ridha
-public class CommentMapper {
 
-    public CommentDto toDto(Comment comment){
+@Service
+public class CommentMapper implements Function<Comment, CommentDto> {
+
+    @Override
+    public CommentDto apply(Comment comment) {
         return new CommentDto(
-                comment.getContent()
-
-        );
+                comment.getContent());
     }
+
+
 
 
 }

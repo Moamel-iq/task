@@ -31,7 +31,6 @@ public class Post {
     @Column(name = "content ",nullable = false)
     private String content;
     @Column(updatable = false)
-    @CreationTimestamp
     private Instant createdAt;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -39,7 +38,7 @@ public class Post {
     @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
     private List<Image> images;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "post")

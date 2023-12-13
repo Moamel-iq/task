@@ -27,7 +27,7 @@ public class userController {
     @ResponseStatus(code = HttpStatus.CREATED)
     public void addUser(
             @RequestBody UserRegistrationRequest request){
-            userService.addUser(request);
+        userService.addUser(request);
     }
 
 }
