@@ -1,17 +1,15 @@
 package com.task.users.dto;
 
 import com.task.users.entity.User;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
+//Ridha
+@Mapper(componentModel = "spring")
+public interface UserMapper {
 
-@Service
-public class UserMapper {
-    public UserDto toDto(User user){
-        return  new UserDto(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.getImage(),
-                user.getPhone()
-        );
-    }
+    UserMapper MAPPER= Mappers.getMapper(UserMapper.class);
+
+    UserDto toUserDto(User user);
+    User toUser(UserDto userDto);
 }
