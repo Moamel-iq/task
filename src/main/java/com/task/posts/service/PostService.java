@@ -39,7 +39,7 @@ public class PostService {
 
 
     public PostDto getPostById(Long id){
-        Post post = postDao.getPostById(id).orElseThrow(
+        Post post = postDao.findById(id).orElseThrow(
                 ()->new ResourceNotFound(
                         "post with id " + id + "not found "
                 ));
@@ -70,7 +70,7 @@ public class PostService {
 
 
     public void updatePost(PostRegistrationRequest request,Long id){
-        Post post = postDao.getPostById(id).orElseThrow(
+        Post post = postDao.findById(id).orElseThrow(
                 ()->new ResourceNotFound(
                         "post with id " + id + "not found "
                 ));

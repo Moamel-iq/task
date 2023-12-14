@@ -16,7 +16,8 @@ public class PostMapperImp implements PostMapper{
                 post.getUser().getId(),
                 post.getId(),
                 post.getTitle(),
-                post.getContent()
+                post.getContent(),
+                post.getLikes()
         );
     }
 

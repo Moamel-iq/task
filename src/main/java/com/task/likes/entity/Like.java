@@ -42,4 +42,6 @@ public class Like {
     public void setLike(boolean like) {
         isLike = like;
     }
+
+
 }

@@ -8,7 +8,7 @@ import java.util.Optional;
 //Moamel
 public interface PostDao {
     List<Post> getAllPosts();
-    Optional<Post> getPostById(Long id);
+    Optional<Post> findById(Long id);
     void createPost(Post post);
     void updatePost(Post post , Long id);
     void deletePost(Long id);

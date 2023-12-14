@@ -20,7 +20,7 @@ public class PostJpa implements PostDao {
         return postRepository.findAll();
     }
     @Override
-    public Optional<Post> getPostById(Long id) {
+    public Optional<Post> findById(Long id) {
 
         return postRepository.findById(id);
     }

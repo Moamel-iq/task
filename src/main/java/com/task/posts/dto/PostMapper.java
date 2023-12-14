@@ -18,22 +18,22 @@ public interface PostMapper {
     PostDto toDto(Post post);
     Post toPost(PostDto postDto);
 
-    default List<PostDto> toDtoList(List<Post> posts) {
-        return posts.stream().map(this::toDto).collect(Collectors.toList());
-    }
+//    default List<PostDto> toDtoList(List<Post> posts) {
+//        return posts.stream().map(this::toDto).collect(Collectors.toList());
+//    }
+//
+//    default List<Post> toEntityList(List<PostDto> postDto) {
+//        return postDto.stream().map(this::toPost).collect(Collectors.toList());
+//    }
 
-    default List<Post> toEntityList(List<PostDto> postDto) {
-        return postDto.stream().map(this::toPost).collect(Collectors.toList());
-    }
-
-    default List<CommentDto> mapComments(List<Comment> comments) {
-        return comments.stream().map(new Function<Comment, CommentDto>() {
-            @Override
-            public CommentDto apply(Comment comment) {
-                return new CommentDto(comment.getContent());
-            }
-        }).collect(Collectors.toList());
-    }
+//    default List<CommentDto> mapComments(List<Comment> comments) {
+//        return comments.stream().map(new Function<Comment, CommentDto>() {
+//            @Override
+//            public CommentDto apply(Comment comment) {
+//                return new CommentDto(comment.getContent());
+//            }
+//        }).collect(Collectors.toList());
+//    }
 //    default List<LikeDto> mapLikes(List<Like> likes) {
 //        return likes.stream().map(new Function<Like, LikeDto>() {
 //            @Override

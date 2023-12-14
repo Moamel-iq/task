@@ -47,6 +47,11 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Like> likes;
 
+    public Integer getLikes(){
+        assert likes != null;
+        return likes.size();
+    }
+
     public Post(String title, String content, User user) {
         this.title=title;
         this.content=content;

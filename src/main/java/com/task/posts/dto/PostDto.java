@@ -12,7 +12,8 @@ public record PostDto(
         Long userID,
         Long postId,
         String title,
-        String content
+        String content,
+        Integer likes
 
 
 ){

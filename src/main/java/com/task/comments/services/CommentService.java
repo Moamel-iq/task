@@ -53,6 +53,7 @@ public class CommentService {
                 registrationRequest.content()
 
         );
+
         commentDao.createComment(comment);
     }
 
