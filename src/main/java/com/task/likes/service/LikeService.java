@@ -36,6 +36,7 @@ public class LikeService {
         Post post = postDao.findById(postId)
                 .orElseThrow(
                         () -> new ResourceNotFound("Post not found with id: " + postId));
+        // if user already liked
         Like like = new Like(true, user, post);
         likeDao.createLike(like);
     }

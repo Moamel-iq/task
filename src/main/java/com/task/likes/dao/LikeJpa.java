@@ -35,5 +35,4 @@ public class LikeJpa implements LikeDao{
         return null;
     }
 
-
 }

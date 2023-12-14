@@ -37,15 +37,11 @@ public class UserJpa implements UserDao{
     @Override
     public void updateUser(User user) {
         userRepository.save(user);
-
     }
-
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
-
     }
-
     @Override
     public Boolean existsUserWithEmail(String email) {
 
