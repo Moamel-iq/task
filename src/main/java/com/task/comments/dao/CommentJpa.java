@@ -47,6 +47,6 @@ public class CommentJpa implements CommentDao {
 
     @Override
     public List<Comment> getCommentByPostId(Long id) {
-        return commentRepo.getAllByPostId(id);
+        return commentRepo.getCommentsByPostId(id);
     }
 }

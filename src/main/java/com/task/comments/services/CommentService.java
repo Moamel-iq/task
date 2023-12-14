@@ -60,16 +60,15 @@ public class CommentService {
     }
 
     public void createComment(CommentRegistrationRequest request,
-                              Long postid
-            ,Long userid
+                              Long postId, Long userId
     ) {
-        Post post = postDao.findById(postid).orElseThrow(
+        Post post = postDao.findById(postId).orElseThrow(
                 () -> new ResourceNotFound(
-                        "post with id " + postid + "not found "
+                        "post with id " + postId + "not found "
                 ));
-        User user = userDao.findById(userid).orElseThrow(
+        User user = userDao.findById(userId).orElseThrow(
                 () -> new ResourceNotFound(
-                        "user with id " + userid + "not found "
+                        "user with id " + userId + "not found "
                 ));
         Comment comment = new Comment(
                 request.content()
