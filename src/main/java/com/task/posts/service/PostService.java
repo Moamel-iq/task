@@ -89,6 +89,8 @@ public class PostService {
     }
 
     public void deletePost(Long id){
+        if(postDao.getPostById(id).isEmpty())
+            throw new ResourceNotFound("Post not found");
         postDao.deletePost(id);
     }
 
