@@ -5,14 +5,19 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+
 //Ridha
 @Repository("CommentJpa")
-public class CommentJpa implements CommentDao{
-    CommentRepository commentRepo;
+public class CommentJpa implements CommentDao {
+    private final CommentRepository commentRepo;
+
+    public CommentJpa(CommentRepository commentRepo) {
+        this.commentRepo = commentRepo;
+    }
 
     @Override
     public List<Comment> getAllComments() {
-        return commentRepo.getAll();
+        return commentRepo.findAll();
     }
 
     @Override
@@ -21,13 +26,16 @@ public class CommentJpa implements CommentDao{
         return commentRepo.findById(id);
     }
 
+
     @Override
     public void createComment(Comment comment) {
+
         commentRepo.save(comment);
     }
 
     @Override
     public void updateComment(Comment comment, Long id) {
+
         commentRepo.save(comment);
     }
 

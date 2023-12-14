@@ -30,7 +30,12 @@ public interface PostMapper {
         return comments.stream().map(new Function<Comment, CommentDto>() {
             @Override
             public CommentDto apply(Comment comment) {
-                return new CommentDto(comment.getContent());
+                return new CommentDto(
+                        comment.getUser().getId(),
+                        comment.getPost().getId(),
+                        comment.getId(),
+                        comment.getContent()
+                );
             }
         }).collect(Collectors.toList());
     }

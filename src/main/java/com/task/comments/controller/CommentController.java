@@ -20,43 +20,44 @@ public class CommentController {
 
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public List<CommentDto> getAllComments(){
+    public List<CommentDto> getAllComments() {
         return commentService.getAllComments();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public CommentDto getCommentById(Long id){
+    public CommentDto getCommentById(
+            @PathVariable(name = "id") Long id) {
         return commentService.getCommentById(id);
     }
 
     @GetMapping("/post/{id}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public List<CommentDto> getCommentByPostId(Long id){
+    public List<CommentDto> getCommentByPostId(Long id) {
         return commentService.getCommentByPostId(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add/{id}")
     @ResponseStatus(code = HttpStatus.CREATED)
     public void createComment(
-            @RequestBody CommentRegistrationRequest registrationRequest){
-        commentService.createComment(registrationRequest);
+                @RequestBody CommentRegistrationRequest request,
+                @PathVariable(name = "id") Long id) {
+        commentService.createComment(request, id);
     }
 
     @PutMapping("/update/{id}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     public void updateComment(
             @RequestBody CommentRegistrationRequest registrationRequest,
-            @PathVariable Long id ){
-        commentService.updateComment(registrationRequest,id);
+            @PathVariable Long id) {
+        commentService.updateComment(registrationRequest, id);
     }
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public void deleteComment(@PathVariable Long id){
+    public void deleteComment(@PathVariable Long id) {
         commentService.deleteComment(id);
     }
-
 
 
 }
