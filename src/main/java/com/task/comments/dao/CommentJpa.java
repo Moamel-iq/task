@@ -36,4 +36,9 @@ public class CommentJpa implements CommentDao{
         commentRepository.deleteById(id);
 
     }
+
+    @Override
+    public List<Comment> getCommentsByPostId(Long id) {
+        return null;
+    }
 }

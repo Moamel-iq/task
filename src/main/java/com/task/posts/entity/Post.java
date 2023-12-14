@@ -39,11 +39,16 @@ public class Post {
     @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
     private List<Image> images;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "post")
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Like> likes;
+
+    public int getLikesCount(){
+        return likes.size();
+    }
     @PrePersist
     public void setCreatedAt(){
         this.createdAt=Instant.now();
@@ -55,14 +60,28 @@ public class Post {
         this.title= title;
         this.content=content;
     }
+
+    public Post(Long id, String title, String content,
+                Instant createdAt, User user, List<Image> images, List<Comment> comments) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.createdAt = createdAt;
+        this.user = user;
+        this.images = images;
+        this.comments = comments;
+    }
+
     public Post(String title, String content, List<String> images, User user) {
         this.title = title;
         this.content = content;
-
         this.createdAt = createdAt;
         this.user = user;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
     public String getTitle() {
         return title;
     }

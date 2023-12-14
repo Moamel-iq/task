@@ -6,7 +6,7 @@ import com.task.users.entity.User;
 import jakarta.persistence.*;
 import lombok.Data;
 
-
+//By Ridha
 @Entity
 @Data
 public class Like {

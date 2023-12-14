@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//Moamel
 @RestController
 @RequestMapping(path = "api/v1/posts")
 public class PostController {
@@ -20,6 +21,7 @@ public class PostController {
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     public List<PostDto> getAllPosts(){
+
         return postService.getALlPosts();
     }
 
@@ -54,7 +56,5 @@ public class PostController {
     public void deletePost(@PathVariable Long id){
         postService.deletePost(id);
     }
-
-
 
 }

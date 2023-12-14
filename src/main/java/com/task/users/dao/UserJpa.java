@@ -12,6 +12,7 @@ public class UserJpa implements UserDao{
     private final UserRepository userRepository;
 
     public UserJpa(UserRepository userRepository) {
+
         this.userRepository = userRepository;
     }
 
@@ -34,7 +35,7 @@ public class UserJpa implements UserDao{
     }
 
     @Override
-    public void updateUser(User user,Long id) {
+    public void updateUser(User user) {
         userRepository.save(user);
 
     }
@@ -47,11 +48,13 @@ public class UserJpa implements UserDao{
 
     @Override
     public boolean existsUserWithEmail(String email) {
+
         return userRepository.existsByEmail(email);
     }
 
     @Override
     public boolean existsUserWithPhone(String phone) {
+
         return userRepository.existsByPhone(phone);
     }
 }

@@ -19,6 +19,7 @@ public interface CommentDao {
 
     void deleteComment(Long id);
 
+    List<Comment> getCommentsByPostId(Long id);
 
 
 }

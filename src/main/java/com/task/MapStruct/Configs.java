@@ -8,5 +8,5 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface Configs {
 
-    MapSDto mapToDto(MapS maps);
+    MapSDto mapToDto(MapS maps);//(User user)
 }

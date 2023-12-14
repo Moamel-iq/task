@@ -2,6 +2,7 @@ package com.task.users.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.Instant;
 
@@ -18,7 +19,7 @@ public class User {
             allocationSize = 1
     )
     private Long id;
-    @Column(name = "user_name",length = 50,nullable = false)
+    @Column(name = "user_name",length = 50)
     private String name;
 
     @Column(name = "user_image",length = 50)
@@ -41,15 +42,6 @@ public class User {
     public void setUpdatedAt(){
         this.updatedAt=Instant.now();
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
 
     public User() {
     }

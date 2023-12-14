@@ -5,7 +5,7 @@ import com.task.users.dto.UserDto;
 import com.task.users.dto.UserMapper;
 import com.task.users.entity.User;
 import com.task.exception.ResourceNotFound;
-import com.task.users.request.RequestValidationException;
+import com.task.exception.RequestValidationException;
 import com.task.users.request.UserRegistrationRequest;
 import com.task.users.request.UserUpdateRequest;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,7 +21,8 @@ public class UserService {
     private final UserMapper mapper;
 
 
-    public UserService(@Qualifier("userJpa") UserDao userDao, UserMapper mapper) {
+    public UserService(@Qualifier("userJpa") UserDao userDao,
+                        @Qualifier("UserMapperImp") UserMapper mapper) {
         this.userDao = userDao;
         this.mapper = mapper;
     }
@@ -30,7 +31,7 @@ public class UserService {
         List<User> users = userDao.getAllUsers();
         return users.
                 stream()
-                .map(mapper.MAPPER::toDto
+                .map(mapper::toDto
                 ).collect(Collectors.toList());
     }
 
@@ -59,8 +60,6 @@ public class UserService {
         if (request.name() != null && !request.name().equals(user.getName())) {
             user.setName(request.name());
             changes = true;
-
-
         }
         if (request.email() != null && !request.email().equals(user.getEmail()) &&
                 !userDao.existsUserWithEmail(request.email())) {
@@ -72,7 +71,7 @@ public class UserService {
             throw new RequestValidationException("no changes were made");
 
         }
-        userDao.updateUser(user, id);
+        userDao.updateUser(user);
     }
     }
 

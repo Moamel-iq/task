@@ -2,12 +2,13 @@ package com.task.users.controller;
 
 import com.task.users.dto.UserDto;
 import com.task.users.request.UserRegistrationRequest;
+import com.task.users.request.UserUpdateRequest;
 import com.task.users.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-//ByMoamel
+//Moamel
 @RestController
 @RequestMapping(path = "api/v1/users")
 public class userController {
@@ -28,6 +29,14 @@ public class userController {
     public void addUser(
             @RequestBody UserRegistrationRequest request){
             userService.addUser(request);
+    }
+
+    @PutMapping("/update/{id}")
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
+    public void updateUser(
+            @RequestBody UserUpdateRequest request,
+            @PathVariable Long id){
+        userService.updateUser(request,id);
     }
 
 }

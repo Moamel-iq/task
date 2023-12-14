@@ -6,32 +6,35 @@ import com.task.posts.dto.PostDto;
 import com.task.posts.dto.PostMapper;
 import com.task.posts.entity.Post;
 import com.task.posts.request.PostRegistrationRequest;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+//Moamel
 
 @Service
 public class PostService {
     private final PostDao postDao;
-    private final PostMapper toDto;
+    private final PostMapper mapper;
 
-    public PostService(PostDao postDao, PostMapper postMapper) {
+    public PostService(PostDao postDao,
+                       @Qualifier("PostMapperImp") PostMapper mapper) {
         this.postDao = postDao;
-        this.toDto = postMapper;
+        this.mapper = mapper;
     }
 
     public List<PostDto> getALlPosts(){
         List<Post> posts = postDao.getAllPosts();
         return posts
                 .stream()
-                .map(toDto)
+                .map(mapper::toDto)
                 .collect(Collectors.toList());
     }
 
     public PostDto getPostById(Long id) {
         return postDao.getPostById(id).
-                map(toDto)
+                map(mapper::toDto)
                 .orElseThrow(
                         () -> new ResourceNotFound("Post not Found")
                 );
@@ -41,7 +44,7 @@ public class PostService {
         List<Post> posts = postDao.getPostByUserID(id);
         return posts
                 .stream()
-                .map(toDto)
+                .map(mapper::toDto)
                 .collect(Collectors.toList());
     }
 
