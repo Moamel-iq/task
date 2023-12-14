@@ -8,14 +8,17 @@ import java.util.Optional;
 //Moamel
 @Repository("PostJpa")
 public class PostJpa implements PostDao {
-    PostRepository postRepository;
+    private final PostRepository postRepository;
+
+    public PostJpa(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
     @Override
     public List<Post> getAllPosts() {
-        return postRepository.getAll();
+
+        return postRepository.findAll();
     }
-
-
     @Override
     public Optional<Post> getPostById(Long id) {
 

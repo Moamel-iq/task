@@ -2,6 +2,7 @@ package com.task.users.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Setter;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.Instant;
@@ -27,11 +28,20 @@ public class User {
     @Column(name = "user_email",nullable = false,unique = true)
     private String email;
 
-    @Column(name = "user_phone",unique = true)
+    @Column(name = "user_phone")
     private String phone;
 
     private Instant createdAt;
     private Instant updatedAt;
+
+
+    public User(Long id, String name, String image, String email, String phone) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.email = email;
+        this.phone = phone;
+    }
 
     @PrePersist
     public void setCreatedAt(){
@@ -55,6 +65,7 @@ public class User {
         this.image = image;
         this.email = email;
         this.phone = phone;
-
     }
+
+
 }

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LikeRepository extends JpaRepository<Like, Long> {
 //get int likes by post id
-    int countByPostId(Long id);
+    Integer countByPostId(Long id);
 }

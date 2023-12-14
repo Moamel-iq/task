@@ -22,8 +22,8 @@ public interface PostMapper {
         return posts.stream().map(this::toDto).collect(Collectors.toList());
     }
 
-    default List<Post> toEntityList(List<PostDto> postDtos) {
-        return postDtos.stream().map(this::toPost).collect(Collectors.toList());
+    default List<Post> toEntityList(List<PostDto> postDto) {
+        return postDto.stream().map(this::toPost).collect(Collectors.toList());
     }
 
     default List<CommentDto> mapComments(List<Comment> comments) {

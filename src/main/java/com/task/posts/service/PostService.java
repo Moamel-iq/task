@@ -6,6 +6,8 @@ import com.task.posts.dto.PostDto;
 import com.task.posts.dto.PostMapper;
 import com.task.posts.entity.Post;
 import com.task.posts.request.PostRegistrationRequest;
+import com.task.users.dao.UserDao;
+import com.task.users.entity.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +17,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService {
+    private final UserDao userDao;
     private final PostDao postDao;
     private final PostMapper mapper;
 
-    public PostService(PostDao postDao,
+    public PostService(UserDao userDao,
+                       @Qualifier("PostJpa") PostDao postDao,
                        @Qualifier("PostMapperImp") PostMapper mapper) {
+        this.userDao = userDao;
         this.postDao = postDao;
         this.mapper = mapper;
     }
@@ -32,12 +37,13 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
-    public PostDto getPostById(Long id) {
-        return postDao.getPostById(id).
-                map(mapper::toDto)
-                .orElseThrow(
-                        () -> new ResourceNotFound("Post not Found")
-                );
+
+    public PostDto getPostById(Long id){
+        Post post = postDao.getPostById(id).orElseThrow(
+                ()->new ResourceNotFound(
+                        "post with id " + id + "not found "
+                ));
+        return mapper.toDto(post);
     }
 
     public List<PostDto> getPostByUserID(Long id){
@@ -48,15 +54,20 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
-
-    public void createPost(PostRegistrationRequest request) {
+    public void createPost(PostRegistrationRequest request,Long id){
+        User user = userDao.findById(id).orElseThrow(
+                ()->new ResourceNotFound(
+                        "user with id " + id + "not found "
+                ));
         Post post = new Post(
                 request.title(),
                 request.content()
         );
+        post.setUser(user);
         postDao.createPost(post);
-
     }
+
+
 
     public void updatePost(PostRegistrationRequest request,Long id){
         Post post = postDao.getPostById(id).orElseThrow(

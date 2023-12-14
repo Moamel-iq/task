@@ -20,6 +20,15 @@ public class UserMapperImp implements UserMapper{
     }
     @Override
     public User toUser(UserDto userDto) {
-        return null;
+
+        if (userDto == null){
+            return null;
+        }
+        return new User(
+                userDto.getName(),
+                userDto.getEmail(),
+                userDto.getImage(),
+                userDto.getPhone()
+        );
     }
 }

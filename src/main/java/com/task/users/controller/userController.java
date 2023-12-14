@@ -4,6 +4,7 @@ import com.task.users.dto.UserDto;
 import com.task.users.request.UserRegistrationRequest;
 import com.task.users.request.UserUpdateRequest;
 import com.task.users.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,13 +15,16 @@ import java.util.List;
 public class userController {
     private final UserService userService;
 
+    @Autowired
     public userController(UserService userService) {
+
         this.userService = userService;
     }
 
     @GetMapping("/all")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     public List<UserDto> getAllUser(){
+
         return userService.getAllUsers();
     }
 
@@ -38,5 +42,22 @@ public class userController {
             @PathVariable Long id){
         userService.updateUser(request,id);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
+    public void deleteUser(
+            @PathVariable Long id){
+        userService.deleteUser(id);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
+    public UserDto getUserById(
+            @PathVariable(name = "id") Long id){
+
+        return userService.getUserById(id);
+    }
+
+
 
 }

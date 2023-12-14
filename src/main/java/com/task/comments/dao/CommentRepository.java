@@ -10,8 +10,9 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment,Long> {
 
     List<Comment> getAllByPostId(Long postId);
-    @Query("SELECT c FROM Comment c order by c.createdAt")
+    @Query("SELECT c FROM Comment c order by c.createdAt")//order by likes
     List<Comment>getAll();
+
 
 
 

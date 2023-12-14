@@ -9,16 +9,17 @@ import lombok.Data;
 //By Ridha
 @Entity
 @Data
+@Table(name = "likes")
 public class Like {
     @Id
-    @GeneratedValue(generator = "like_sequence",strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "like_id_seq" , sequenceName = "like_id_seq")
     private Long id;
 
     @Column(name="like_status")
     boolean isLike;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
     private User user;
 
     @ManyToOne

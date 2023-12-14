@@ -23,7 +23,7 @@ public class UserJpa implements UserDao{
     }
 
     @Override
-    public Optional<User> getUser(Long id) {
+    public Optional<User> findById(Long id) {
 
         return userRepository.findById(id);
     }
@@ -47,13 +47,13 @@ public class UserJpa implements UserDao{
     }
 
     @Override
-    public boolean existsUserWithEmail(String email) {
+    public Boolean existsUserWithEmail(String email) {
 
         return userRepository.existsByEmail(email);
     }
 
     @Override
-    public boolean existsUserWithPhone(String phone) {
+    public Boolean existsUserWithPhone(String phone) {
 
         return userRepository.existsByPhone(phone);
     }

@@ -9,15 +9,15 @@ import java.util.Optional;
 public interface UserDao {
 
     List<User> getAllUsers();
-    Optional<User> getUser(Long id);
+    Optional<User> findById(Long id);
 
     void createUser(User user);
     void updateUser(User user);
 
     void deleteUser(Long id);
 
-    boolean existsUserWithEmail(String email);
-    boolean existsUserWithPhone(String phone);
+    Boolean existsUserWithEmail(String email);
+    Boolean existsUserWithPhone(String phone);
 
 
 
