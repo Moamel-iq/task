@@ -1,6 +1,7 @@
 package com.task.posts.controller;
 
 import com.task.posts.dto.PostDto;
+
 import com.task.posts.request.PostRegistrationRequest;
 import com.task.posts.service.PostService;
 import org.springframework.http.HttpStatus;

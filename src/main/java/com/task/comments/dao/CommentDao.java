@@ -11,7 +11,7 @@ public interface CommentDao {
 
     List<Comment> getAllComments();
 
-    Optional<Comment>getComment(Long id);
+    Optional<Comment> getCommentById(Long id);
 
     void createComment(Comment comment);
 
@@ -19,7 +19,8 @@ public interface CommentDao {
 
     void deleteComment(Long id);
 
-    List<Comment> getCommentsByPostId(Long id);
+    List<Comment> getCommentByPostId(Long id);
+
 
 
 }
