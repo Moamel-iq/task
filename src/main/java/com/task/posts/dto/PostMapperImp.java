@@ -13,9 +13,10 @@ public class PostMapperImp implements PostMapper{
             return null;
         }
         return new PostDto(
+                post.getUser().getId(),
+                post.getId(),
                 post.getTitle(),
-                post.getContent(),
-                post.getId()
+                post.getContent()
         );
     }
 

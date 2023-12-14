@@ -9,10 +9,10 @@ import com.task.users.entity.User;
 import java.util.List;
 
 public record PostDto(
-
+        Long userID,
+        Long postId,
         String title,
-        String content,
-        Long postId
+        String content
 
 
 ){
