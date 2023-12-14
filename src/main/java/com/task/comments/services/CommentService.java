@@ -76,8 +76,6 @@ public class CommentService {
         comment.setPost(post);
         comment.setUser(user);
         commentDao.createComment(comment);
-
-
     }
 
     public void updateComment(CommentRegistrationRequest registrationRequest, Long id) {

@@ -33,7 +33,8 @@ public class CommentController {
 
     @GetMapping("/post/{id}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public List<CommentDto> getCommentByPostId(Long id) {
+    public List<CommentDto> getCommentByPostId(
+            @PathVariable(name = "id") Long id) {
         return commentService.getCommentByPostId(id);
     }
 

@@ -14,7 +14,14 @@ public record PostDto(
         String title,
         String content,
         Integer likes
+        //image
+//        List<CommentDto> comments
+
 
 
 ){
 }
+
+
+
+

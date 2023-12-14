@@ -18,6 +18,8 @@ public interface PostMapper {
     PostDto toDto(Post post);
     Post toPost(PostDto postDto);
 
+
+
 //    default List<PostDto> toDtoList(List<Post> posts) {
 //        return posts.stream().map(this::toDto).collect(Collectors.toList());
 //    }
