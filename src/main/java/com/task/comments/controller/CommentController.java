@@ -37,12 +37,14 @@ public class CommentController {
         return commentService.getCommentByPostId(id);
     }
 
-    @PostMapping("/add/{id}")
+    @PostMapping("/add")
     @ResponseStatus(code = HttpStatus.CREATED)
     public void createComment(
                 @RequestBody CommentRegistrationRequest request,
-                @PathVariable(name = "id") Long id) {
-        commentService.createComment(request, id);
+                @RequestParam(name = "userId") Long userId,
+                @RequestParam(name = "postId")Long postId)
+    {
+        commentService.createComment(request, userId,postId);
     }
 
     @PutMapping("/update/{id}")

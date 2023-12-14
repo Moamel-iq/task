@@ -32,6 +32,8 @@ public class CommentService {
                           @Qualifier("userJpa") UserDao userDao) {
         this.commentDao = commentDao;
         this.commentMapper = commentMapper;
+        this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     public List<CommentDto> getAllComments() {
@@ -59,20 +61,21 @@ public class CommentService {
 
     public void createComment(CommentRegistrationRequest request,
                               Long postid
-//            ,Long userid
+            ,Long userid
     ) {
-        Post post = postDao.getPostById(postid).orElseThrow(
+        Post post = postDao.findById(postid).orElseThrow(
                 () -> new ResourceNotFound(
                         "post with id " + postid + "not found "
                 ));
-//        User user = userDao.findById(userid).orElseThrow(
-//                () -> new ResourceNotFound(
-//                        "user with id " + userid + "not found "
-//                ));
+        User user = userDao.findById(userid).orElseThrow(
+                () -> new ResourceNotFound(
+                        "user with id " + userid + "not found "
+                ));
         Comment comment = new Comment(
                 request.content()
         );
         comment.setPost(post);
+        comment.setUser(user);
         commentDao.createComment(comment);
 
 
