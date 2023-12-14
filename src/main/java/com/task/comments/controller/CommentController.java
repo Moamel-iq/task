@@ -41,10 +41,11 @@ public class CommentController {
     @ResponseStatus(code = HttpStatus.CREATED)
     public void createComment(
                 @RequestBody CommentRegistrationRequest request,
-                @RequestParam(name = "userId") Long userId,
-                @RequestParam(name = "postId")Long postId)
+                @RequestParam(name = "postId")Long postId,
+                @RequestParam(name = "userId") Long userId
+    )
     {
-        commentService.createComment(request, userId,postId);
+        commentService.createComment(request,postId,userId);
     }
 
     @PutMapping("/update/{id}")
