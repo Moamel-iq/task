@@ -14,8 +14,8 @@ public class UserMapperImp implements UserMapper{
                 user.getId(),
                 user.getName(),
                 user.getEmail(),
-                user.getImage(),
-                user.getPhone()
+                user.getPhone(),
+                user.getImage()
         );
     }
     @Override

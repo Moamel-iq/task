@@ -35,11 +35,11 @@ public class User {
     private Instant updatedAt;
 
 
-    public User(Long id, String name, String image, String email, String phone) {
+    public User(Long id, String name,  String email , String image, String phone) {
         this.id = id;
         this.name = name;
-        this.image = image;
         this.email = email;
+        this.image = image;
         this.phone = phone;
     }
 
@@ -57,13 +57,13 @@ public class User {
     }
 
     public User(
-            String name, String image,
-            String email, String phone
+            String name,
+            String email,String image, String phone
             ) {
 
         this.name = name;
-        this.image = image;
         this.email = email;
+        this.image = image;
         this.phone = phone;
     }
 

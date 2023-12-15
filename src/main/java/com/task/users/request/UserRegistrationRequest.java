@@ -5,5 +5,5 @@ public record UserRegistrationRequest(
         String email,
         String image,
         String phone
-) {
+        ) {
 }

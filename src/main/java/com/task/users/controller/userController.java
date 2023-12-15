@@ -28,6 +28,14 @@ public class userController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("user/{id}")
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
+    public UserDto getUserById(
+            @PathVariable(name = "id") Long id){
+
+        return userService.getUserById(id);
+    }
+
     @PostMapping("/add")
     @ResponseStatus(code = HttpStatus.CREATED)
     public void addUser(
@@ -43,19 +51,11 @@ public class userController {
         userService.updateUser(request,id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     public void deleteUser(
             @PathVariable Long id){
         userService.deleteUser(id);
-    }
-
-    @GetMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public UserDto getUserById(
-            @PathVariable(name = "id") Long id){
-
-        return userService.getUserById(id);
     }
 
 

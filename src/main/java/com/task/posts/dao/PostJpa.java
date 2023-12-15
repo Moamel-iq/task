@@ -17,7 +17,7 @@ public class PostJpa implements PostDao {
     @Override
     public List<Post> getAllPosts() {
 
-        return postRepository.findAll();
+        return postRepository.getAll();
     }
     @Override
     public Optional<Post> findById(Long id) {
