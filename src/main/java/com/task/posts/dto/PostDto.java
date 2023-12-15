@@ -10,8 +10,6 @@ public record PostDto(
         String content,
         Integer likes
 ) {
-
-
 }
 
 

@@ -69,24 +69,16 @@ public class PostService {
 
 
 
-    public void updatePost(PostRegistrationRequest request,Long id){
+    public void updatePost(PostRegistrationRequest request, Long id){
         Post post = postDao.findById(id).orElseThrow(
                 ()->new ResourceNotFound(
                         "post with id " + id + "not found "
                 ));
-        boolean changes = false;
-        if (request.title() != null && !request.title().equals(post.getTitle())) {
-            post.setTitle(request.title());
-            changes = true;
-        }
-        if (request.content() != null && !request.content().equals(post.getContent())) {
-            post.setContent(request.content());
-            changes = true;
-        }
-        if (changes) {
-            postDao.updatePost(post, id);
-        }
+        PostDto postDto = mapper.toDto(request);
+        mapper.updatePostFromDto(postDto, post);
+        postDao.updatePost(post, id);
     }
+
 
     public void deletePost(Long id){
         if(postDao.findById(id).isEmpty())

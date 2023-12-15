@@ -2,6 +2,7 @@ package com.task.posts.controller;
 
 import com.task.posts.dto.PostDto;
 
+import com.task.posts.dto.PostMapper;
 import com.task.posts.request.PostRegistrationRequest;
 import com.task.posts.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class PostController {
     public void updatePost(
             @RequestBody PostRegistrationRequest request,
             @PathVariable Long id ){
-        postService.updatePost(request,id);
+        postService.updatePost(request, id);
     }
 
     @DeleteMapping("/delete")
