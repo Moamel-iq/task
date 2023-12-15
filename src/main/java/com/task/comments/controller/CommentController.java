@@ -18,18 +18,18 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/all")
-    @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public List<CommentDto> getAllComments() {
-        return commentService.getAllComments();
-    }
-
-    @GetMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public CommentDto getCommentById(
-            @PathVariable(name = "id") Long id) {
-        return commentService.getCommentById(id);
-    }
+//    @GetMapping("/all")
+//    @ResponseStatus(code = HttpStatus.ACCEPTED)
+//    public List<CommentDto> getAllComments() {
+//        return commentService.getAllComments();
+//    }
+//
+//    @GetMapping("/{id}")
+//    @ResponseStatus(code = HttpStatus.ACCEPTED)
+//    public CommentDto getCommentById(
+//            @PathVariable(name = "id") Long id) {
+//        return commentService.getCommentById(id);
+//    }
 
     @GetMapping("/post/{id}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
@@ -60,6 +60,7 @@ public class CommentController {
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     public void deleteComment(@PathVariable Long id) {
+
         commentService.deleteComment(id);
     }
 

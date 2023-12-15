@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/likes")
+@RequestMapping("/api/v1/like")
 public class LikeController {
     private final LikeService likeService;
 
@@ -21,7 +21,7 @@ public class LikeController {
         return likeService.countLikesByPostId(postId);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public void addLike(
             @RequestParam(name = "userId") Long userId,
@@ -33,8 +33,8 @@ public class LikeController {
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     public void delete(
             @RequestParam(name = "userId") Long userId,
-            @RequestParam(name = "postId") Long postId){
+            @RequestParam(name = "postId") Long postId)
+    {
         likeService.deleteLike(userId,postId);
     }
-
 }

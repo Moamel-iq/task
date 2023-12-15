@@ -36,26 +36,23 @@ public class LikeService {
         Post post = postDao.findById(postId)
                 .orElseThrow(
                         () -> new ResourceNotFound("Post not found with id: " + postId));
-        // if user already liked
-        Like like = new Like(true, user, post);
-        likeDao.createLike(like);
+        Like like = likeDao.findByUserAndPost(userId, postId);
+        if (like != null) {
+            likeDao.deleteLike(like.getId());
+            return;
+        }
+        Like newLike = new Like();
+        newLike.setUser(user);
+        newLike.setPost(post);
+        likeDao.createLike(newLike);
+
     }
 
     public void deleteLike(Long userId, Long postId) {
-        User user = userDao.findById(userId)
-                .orElseThrow(
-                        ()->new ResourceNotFound("user not found")
-                );
-
-        Post post = postDao.findById(postId)
-                .orElseThrow(
-                        ()-> new ResourceNotFound("Post not found")
-                );
-        Like existingLike = likeDao.findByUserAndPost(user.getId(), post.getId());
-        if (existingLike != null) {
-            likeDao.deleteLike(existingLike.getId());
+        Like like = likeDao.findByUserAndPost(userId, postId);
+        if (like == null) {
+            throw new ResourceNotFound("Like not found with userId: " + userId + " and postId: " + postId);
         }
-
-
+        likeDao.deleteLike(like.getId());
     }
 }

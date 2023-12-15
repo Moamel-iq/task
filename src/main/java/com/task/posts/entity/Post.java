@@ -85,7 +85,6 @@ public class Post {
     public Post(String title, String content, List<String> images, User user) {
         this.title = title;
         this.content = content;
-
         this.createdAt = createdAt;
         this.user = user;
     }
