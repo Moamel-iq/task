@@ -4,6 +4,7 @@ import com.task.posts.dto.PostDto;
 
 import com.task.posts.dto.PostMapper;
 import com.task.posts.request.PostRegistrationRequest;
+import com.task.posts.request.PostUpdateRequest;
 import com.task.posts.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,7 +57,7 @@ public class PostController {
     @PutMapping("/update/{id}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
     public void updatePost(
-            @RequestBody PostRegistrationRequest request,
+            @RequestBody PostUpdateRequest request,
             @PathVariable Long id ){
         postService.updatePost(request, id);
     }

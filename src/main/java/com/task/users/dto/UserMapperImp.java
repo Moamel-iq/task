@@ -18,17 +18,10 @@ public class UserMapperImp implements UserMapper{
                 user.getImage()
         );
     }
+
     @Override
     public User toUser(UserDto userDto) {
-
-        if (userDto == null){
-            return null;
-        }
-        return new User(
-                userDto.getName(),
-                userDto.getEmail(),
-                userDto.getImage(),
-                userDto.getPhone()
-        );
+        return null;
     }
+
 }

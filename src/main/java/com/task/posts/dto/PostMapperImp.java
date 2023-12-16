@@ -1,11 +1,12 @@
 package com.task.posts.dto;
 import com.task.posts.entity.Post;
 import com.task.posts.request.PostRegistrationRequest;
+import com.task.posts.request.PostUpdateRequest;
 import org.mapstruct.MappingTarget;
 import org.springframework.stereotype.Repository;
 import java.time.Duration;
 import java.time.Instant;
-
+//Moamel
 @Repository("PostMapperImp")
 public class PostMapperImp implements PostMapper{
 
@@ -43,28 +44,11 @@ public class PostMapperImp implements PostMapper{
     }
 
     @Override
-    public void updatePostFromDto(PostDto postDto, @MappingTarget Post post) {
-        if (postDto == null) {
-            return;
+    public void updateToPost(PostUpdateRequest request, Post post) {
+        if (request != null) {
+            post.setTitle(request.title());
+            post.setContent(request.content());
         }
-        post.setTitle(postDto.title());
-        post.setContent(postDto.content());
-    }
-
-
-    @Override
-    public PostDto toDto(PostRegistrationRequest request) {
-        if (request == null) {
-            return null;
-        }
-        return new PostDto(
-                null,
-                null,
-                null,
-                request.title(),
-                request.content(),
-                null
-        );
     }
 }
 

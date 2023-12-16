@@ -10,7 +10,7 @@ public interface PostDao {
     List<Post> getAllPosts();
     Optional<Post> findById(Long id);
     void createPost(Post post);
-    void updatePost(Post post , Long id);
+    void updatePost(Post post);
     void deletePost(Long id);
     List<Post> getPostByUserID(Long id);
 }

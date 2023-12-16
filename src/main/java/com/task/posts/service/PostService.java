@@ -6,11 +6,12 @@ import com.task.posts.dto.PostDto;
 import com.task.posts.dto.PostMapper;
 import com.task.posts.entity.Post;
 import com.task.posts.request.PostRegistrationRequest;
+import com.task.posts.request.PostUpdateRequest;
 import com.task.users.dao.UserDao;
 import com.task.users.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 //Moamel
@@ -21,12 +22,15 @@ public class PostService {
     private final PostDao postDao;
     private final PostMapper mapper;
 
+
+    @Autowired
     public PostService(UserDao userDao,
                        @Qualifier("PostJpa") PostDao postDao,
                        @Qualifier("PostMapperImp") PostMapper mapper) {
         this.userDao = userDao;
         this.postDao = postDao;
         this.mapper = mapper;
+
     }
 
     public List<PostDto> getALlPosts(){
@@ -69,14 +73,14 @@ public class PostService {
 
 
 
-    public void updatePost(PostRegistrationRequest request, Long id){
+    public void updatePost(PostUpdateRequest request, Long id){
         Post post = postDao.findById(id).orElseThrow(
                 ()->new ResourceNotFound(
                         "post with id " + id + "not found "
                 ));
-        PostDto postDto = mapper.toDto(request);
-        mapper.updatePostFromDto(postDto, post);
-        postDao.updatePost(post, id);
+
+        mapper.updateToPost(request,post);
+        postDao.updatePost(post);
     }
 
 

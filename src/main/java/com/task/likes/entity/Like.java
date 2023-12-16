@@ -16,8 +16,6 @@ public class Like {
     @SequenceGenerator(name = "like_id_seq" , sequenceName = "like_id_seq")
     private Long id;
 
-    @Column(name="like_status")
-    boolean isLike;
 
     @ManyToOne
     private User user;
@@ -29,19 +27,12 @@ public class Like {
     public Like() {
     }
 
-    public Like(boolean isLike, User user, Post post) {
-        this.isLike = isLike;
+    public Like( User user, Post post) {
+
         this.user = user;
         this.post = post;
     }
 
-    public boolean isLike() {
-        return isLike;
-    }
-
-    public void setLike(boolean like) {
-        isLike = like;
-    }
 
 
 }

@@ -2,6 +2,7 @@ package com.task.posts.dto;
 //Moamel
 
 
+
 public record PostDto(
         String createdAt,
         Long userID,
@@ -10,6 +11,7 @@ public record PostDto(
         String content,
         Integer likes
 ) {
+
 }
 
 

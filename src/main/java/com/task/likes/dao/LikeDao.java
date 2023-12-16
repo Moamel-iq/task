@@ -9,7 +9,6 @@ public interface LikeDao {
     Integer getAllLikesByPostId(Long id);
     void createLike(Like like);
     void deleteLike(Long id);
-
     Like findByUserAndPost(Long userId, Long postId);
 
 }

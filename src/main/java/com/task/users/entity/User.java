@@ -1,5 +1,6 @@
 package com.task.users.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;
@@ -22,7 +23,7 @@ public class User {
     private Long id;
     @Column(name = "user_name",length = 50)
     private String name;
-
+    @Nullable
     @Column(name = "user_image",length = 50)
     private String image;
     @Column(name = "user_email",nullable = false,unique = true)

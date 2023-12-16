@@ -26,13 +26,13 @@ public class LikeJpa implements LikeDao{
 
     @Override
     public void deleteLike(Long id) {
-        likeRepository.deleteById(id);
+        likeRepository.deleteLikeById(id);
     }
 
     @Override
     public Like findByUserAndPost(Long userId, Long postId) {
-        likeRepository.findLikeByPostIdAndUserId(userId, postId);
-        return null;
+        return likeRepository.findByUser_IdAndPost_Id(userId, postId);
+
     }
 
 }

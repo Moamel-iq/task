@@ -8,18 +8,18 @@ import com.task.posts.dao.PostDao;
 import com.task.posts.entity.Post;
 import com.task.users.dao.UserDao;
 import com.task.users.entity.User;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LikeService {
     private final LikeDao likeDao;
-    private final LikeMapper likeMapper;
+
 
     private final UserDao userDao;
     private final PostDao postDao;
-    public LikeService(LikeDao likeDao, LikeMapper likeMapper, UserDao userDao, PostDao postDao) {
+    public LikeService(LikeDao likeDao, UserDao userDao, PostDao postDao) {
         this.likeDao = likeDao;
-        this.likeMapper = likeMapper;
         this.userDao = userDao;
         this.postDao = postDao;
     }

@@ -20,17 +20,17 @@ public class PostJpa implements PostDao {
         return postRepository.getAll();
     }
     @Override
+    public void updatePost(Post post) {
+
+        postRepository.save(post);
+    }
+    @Override
     public Optional<Post> findById(Long id) {
 
         return postRepository.findById(id);
     }
     @Override
     public void createPost(Post post) {
-
-        postRepository.save(post);
-    }
-    @Override
-    public void updatePost(Post post, Long id) {
 
         postRepository.save(post);
     }

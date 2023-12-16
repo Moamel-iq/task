@@ -6,8 +6,8 @@ import com.task.likes.dto.LikeDto;
 import com.task.likes.entity.Like;
 import com.task.posts.entity.Post;
 import com.task.posts.request.PostRegistrationRequest;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
+import com.task.posts.request.PostUpdateRequest;
+import org.mapstruct.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,9 +17,10 @@ import java.util.stream.Collectors;
 //Moamel
 @Mapper
 public interface PostMapper {
+
     PostDto toDto(Post post);//convert the post entity to dto
-    void updatePostFromDto(PostDto postDto, @MappingTarget Post post);// used to update an existing Post entity with the values from a PostDto
-    PostDto toDto(PostRegistrationRequest request);//convert the PostRegistrationRequest to post dto
+    void updateToPost(PostUpdateRequest request , @MappingTarget Post post);
+
 }
 
 
